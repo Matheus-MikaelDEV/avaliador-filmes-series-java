@@ -1,0 +1,32 @@
+package entities.enums;
+
+public enum Genero {
+    ACAO,
+    AVENTURA,
+    ANIMACAO,
+    BIOGRAFIA,
+    COMEDIA,
+    CRIME,
+    DOCUMENTARIO,
+    DRAMA,
+    FAMILIA,
+    FANTASIA,
+    HISTORIA,
+    TERROR,
+    MUSICAL,
+    MISTERIO,
+    ROMANCE,
+    FICCAO_CIENTIFICA,
+    ESPORTE,
+    SUPER_HEROI,
+    SUSPENSE,
+    GUERRA,
+    FAROESTE,
+    NOIR,
+    REALITY_SHOW,
+    CURTA_METRAGEM,
+    SITCOM,
+    ADOLESCENTE,
+    PARODIA,
+    GAME_SHOW;
+}
