@@ -181,7 +181,7 @@ public class Main {
                             int option2 = 0;
 
                             do {
-                                System.out.println("Menu: \n"+ "1 - Cadastrar Avaliação\n2 - Listar Todos os Conteúdos\n3 - Deslogar");
+                                System.out.println("Menu: \n"+ "1 - Cadastrar Avaliação\n2 - Listar Todos os Conteúdos\n3 - Listar Todas as Séries\n4 - Listar Todos os Filmes\n5 - Deslogar");
                                 System.out.print("Opção: ");
                                 option2 = sc.nextInt();
                                 sc.nextLine();
