@@ -29,7 +29,7 @@ public abstract class Conteudo {
         for (Avaliacao avaliacao : avaliacoes) {
             soma += avaliacao.getNota();
         }
-        return soma;
+        return soma / avaliacoes.size();
     }
 
     public void adicionarAvaliacao(Avaliacao avaliacao) {
