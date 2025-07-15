@@ -20,6 +20,11 @@ public abstract class Conteudo {
     }
 
     public double getNotaMedia() {
+
+        if (avaliacoes.isEmpty()) {
+            return 0.0;
+        }
+
         double soma = 0.0;
         for (Avaliacao avaliacao : avaliacoes) {
             soma += avaliacao.getNota();
