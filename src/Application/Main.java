@@ -178,6 +178,20 @@ public class Main {
                                         }
 
                                         break;
+                                    case 4:
+                                        System.out.println("Removendo usuário...");
+
+                                        System.out.print("Qual o id do usuário que deseja remover? ");
+                                        int idUsuario = sc.nextInt();
+
+                                        if (sistema.removerUsuario(idUsuario)) {
+                                            System.out.println("Usuário removido com sucesso!");
+                                        } else {
+                                            System.out.println("Usuário não encontrado!");
+
+                                        }
+
+                                        break;
                                     default:
                                         System.out.println("Opção inválida! Tente novamente:");
                                         break;
