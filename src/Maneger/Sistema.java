@@ -24,6 +24,35 @@ public class Sistema {
         return true;
     }
 
+    //listar usuarios
+    public boolean listarUsuarios() {
+        int i = 0;
+
+        if (usuarios.isEmpty()) {
+            return false;
+        } else {
+            for (Usuario usuario : usuarios) {
+                System.out.println(i + " - " + usuario.getInfo());
+                i++;
+            }
+            return true;
+        }
+
+    }
+
+    //remover usuario
+    public boolean removerUsuario(int idUsuario) {
+        if (usuarios.isEmpty()) {
+            return false;
+        } else {
+            if (idUsuario < usuarios.size()) {
+                usuarios.remove(idUsuario);
+                return true;
+            }
+            return false;
+        }
+    }
+
     //Verifica o login do usuario
     public boolean login(String email, String senha) {
         for (Usuario usuario : usuarios) {
