@@ -169,7 +169,14 @@ public class Main {
                                         }
                                         break;
                                     case 3:
-                                        System.out.println("Deslogando...");
+                                        System.out.println("Listando usuários...");
+
+                                        if (sistema.listarUsuarios()) {
+                                            System.out.println("Usuários listados com sucesso!");
+                                        } else {
+                                            System.out.println("Nenhum usuário cadastrado!");
+                                        }
+
                                         break;
                                     default:
                                         System.out.println("Opção inválida! Tente novamente:");
