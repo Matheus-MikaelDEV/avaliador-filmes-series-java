@@ -214,6 +214,8 @@ public class Main {
                                         } else {
                                             System.out.println("Nenhum conteúdo cadastrado!");
                                         }
+
+                                        break;
                                     case 3:
                                         System.out.println("Deslogando...");
                                         break;
