@@ -28,7 +28,6 @@ public abstract class Conteudo {
         double soma = 0.0;
         for (Avaliacao avaliacao : avaliacoes) {
             soma += avaliacao.getNota();
-            return soma / avaliacoes.size();
         }
         return soma;
     }
