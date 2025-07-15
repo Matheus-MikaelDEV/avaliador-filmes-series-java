@@ -241,7 +241,7 @@ public class Main {
                                         break;
                                 }
 
-                            } while (option2 != 3);
+                            } while (option2 != 5);
                         }
                     } else {
                         System.out.println("Email ou senha incorretos!");
