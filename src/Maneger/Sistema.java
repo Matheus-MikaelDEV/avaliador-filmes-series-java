@@ -73,6 +73,32 @@ public class Sistema {
         return true;
     }
 
+    //Listar todas as séries
+    public boolean listarSeries() {
+        if (conteudos.isEmpty()) {
+            return false;
+        }
+        for (Conteudo conteudo : conteudos) {
+            if (conteudo.getClass() == Serie.class) {
+                System.out.println(conteudo.getInfo());
+            }
+        }
+        return true;
+    }
+
+    //Listar todos os filmes
+    public boolean listarFilmes() {
+        if (conteudos.isEmpty()) {
+            return false;
+        }
+        for (Conteudo conteudo : conteudos) {
+            if (conteudo.getClass() == Filme.class) {
+                System.out.println(conteudo.getInfo());
+            }
+        }
+        return true;
+    }
+
     //puxa o usuario logado para validar o que ele pode fazer
     public Usuario getUsuarioLogado() {
         return usuarioLogado;
