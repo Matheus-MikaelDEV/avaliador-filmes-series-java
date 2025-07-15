@@ -217,7 +217,14 @@ public class Main {
 
                                         break;
                                     case 3:
-                                        System.out.println("Deslogando...");
+                                        System.out.println("Listando todas as séries...");
+
+                                        if (sistema.listarSeries()) {
+                                            System.out.println("Séries listadas com sucesso!");
+                                        } else {
+                                            System.out.println("Nenhuma série cadastrada!");
+                                        }
+
                                         break;
                                     default:
                                         System.out.println("Opção inválida! Tente novamente:");
