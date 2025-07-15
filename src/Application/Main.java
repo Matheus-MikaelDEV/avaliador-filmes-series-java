@@ -226,6 +226,16 @@ public class Main {
                                         }
 
                                         break;
+                                    case 4:
+                                        System.out.println("Listando todos os filmes...");
+
+                                        if (sistema.listarFilmes()) {
+                                            System.out.println("Filmes listados com sucesso!");
+                                        } else {
+                                            System.out.println("Nenhum filme cadastrado!");
+                                        }
+
+                                        break;
                                     default:
                                         System.out.println("Opção inválida! Tente novamente:");
                                         break;
