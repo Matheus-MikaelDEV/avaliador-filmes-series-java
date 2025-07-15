@@ -236,6 +236,9 @@ public class Main {
                                         }
 
                                         break;
+                                    case 5:
+                                        System.out.println("Deslogando...");
+                                        break;
                                     default:
                                         System.out.println("Opção inválida! Tente novamente:");
                                         break;
