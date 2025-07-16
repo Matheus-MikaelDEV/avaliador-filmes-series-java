@@ -6,13 +6,13 @@ Este projeto é um sistema de console em Java que permite aos usuários comuns a
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Java 17+**
-- **POO (Programação Orientada a Objetos)**
-- **Coleções (List)**
-- **Enums**
-- **Classes Abstratas**
-- **Encapsulamento e Polimorfismo**
-- **Console (Scanner)**
+- Java 17+
+- Programação Orientada a Objetos (POO)
+- Coleções (List)
+- Enums
+- Classes Abstratas
+- Encapsulamento e Polimorfismo
+- Entrada pelo Console (`Scanner`)
 
 ---
 
@@ -43,31 +43,36 @@ src/
 
 ## 👤 Tipos de Usuário
 
-- **Admin:** Pode cadastrar filmes e séries.
+- **Admin:** Pode cadastrar filmes e séries, listar e remover usuários.
 - **Usuário Comum:** Pode avaliar conteúdos e visualizar avaliações.
 
 ---
 
 ## 🚀 Funcionalidades
 
-### 1. Cadastro e Login
+### Cadastro e Login
+
 - Cadastro de Admin requer token de segurança.
 - Evita e-mails duplicados.
-- Autenticação de login com e-mail e senha.
+- Autenticação por e-mail e senha.
 
-### 2. Admin
-- Cadastrar filmes (com título, data de lançamento, gênero, duração).
-- Cadastrar séries (com título, data de lançamento, gênero, temporadas, episódios, status finalizada).
+### Admin
 
-### 3. Usuário Comum
-- Avaliar qualquer conteúdo já cadastrado.
-- Comentários e notas são armazenados e listados.
-- As avaliações são ordenadas por nota (maior para menor).
+- Cadastrar filmes (título, data de lançamento, gênero, duração).
+- Cadastrar séries (título, data de lançamento, gênero, temporadas, episódios por temporada, status finalizada).
+- Listar usuários cadastrados.
+- Remover usuários.
 
-### 4. Sistema
-- Evita cadastro de obras duplicadas.
-- Exibe todas as obras com avaliações.
-- Gêneros são definidos por `enum` (valores como AÇÃO, COMÉDIA, DRAMA...).
+### Usuário Comum
+
+- Avaliar qualquer conteúdo cadastrado (com comentário e nota).
+- Listar todos os conteúdos, somente séries ou somente filmes.
+- Avaliações são armazenadas e exibidas ordenadas por nota (maior para menor).
+
+### Sistema
+
+- Evita cadastro duplicado de usuários e conteúdos.
+- Gêneros são definidos por enum (`Genero`) com valores como AÇÃO, COMÉDIA, DRAMA, etc.
 
 ---
 
@@ -83,3 +88,46 @@ Menu:
 3 - Login
 4 - Fechar Programa
 ```
+
+---
+
+## ⚙️ Fluxo principal do sistema (Baseado em `Main.java`)
+
+1. Solicita token para cadastrar administrador.
+2. Menu inicial com opções para:
+   - Cadastrar administrador (token obrigatório).
+   - Cadastrar usuário comum.
+   - Login.
+   - Fechar programa.
+
+3. Após login, mostra menus conforme o tipo de usuário:
+
+   - **Admin:**
+     - Cadastrar filmes.
+     - Cadastrar séries.
+     - Listar usuários.
+     - Remover usuários.
+     - Deslogar.
+
+   - **Usuário Comum:**
+     - Cadastrar avaliação em obras existentes.
+     - Listar todos os conteúdos.
+     - Listar todas as séries.
+     - Listar todos os filmes.
+     - Deslogar.
+
+---
+
+## 📝 Observações
+
+- As datas devem ser inseridas no formato `dd/MM/yyyy`.
+- Gêneros devem ser escritos sem acentos e em letras maiúsculas (ex: `ACAO`, `COMEDIA`, `DRAMA`).
+- Avaliações são vinculadas ao usuário logado.
+
+---
+
+## Contato
+
+Projeto criado por Matheus Mikael.
+
+---
