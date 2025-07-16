@@ -1,6 +1,7 @@
 package Application;
 
 import Maneger.Sistema;
+import Model.Conteudo.Avaliacao;
 import Model.Conteudo.Conteudo;
 import Model.Conteudo.Filme;
 import Model.Conteudo.Serie;
@@ -24,7 +25,7 @@ public class Main {
         sc.nextLine();
 
         int option = 0;
-        String nome, email, senha;
+        String nome = "", email, senha;
 
         Sistema sistema = new Sistema();
 
@@ -65,7 +66,6 @@ public class Main {
                 case 2:
                     System.out.println("Cadastrando usuário comum...");
 
-                    System.out.println("Cadastrando admin...");
                     System.out.print("Qual o nome do usuário? ");
                     nome = sc.nextLine();
                     System.out.print("Qual o email do usuário? ");
@@ -101,7 +101,7 @@ public class Main {
 
                             //Segundo menu caso o usuario seja um adm do sistema ai ele tem o direito de cadastrar filmes ou series
                             do {
-                                System.out.println("Menu: \n"+ "1 - Cadastrar Filme\n2 - Cadastrar Série\n3 - Deslogar");
+                                System.out.println("Menu: \n"+ "1 - Cadastrar Filme\n2 - Cadastrar Série\n3 - Listar Usuários\n4 - Remover Usuário\n5 - Deslogar");
                                 System.out.print("Opção: ");
                                 option1 = sc.nextInt();
                                 sc.nextLine();
@@ -192,17 +192,20 @@ public class Main {
                                         }
 
                                         break;
+                                    case 5:
+                                        System.out.println("Deslogando...");
+                                        break;
                                     default:
                                         System.out.println("Opção inválida! Tente novamente:");
                                         break;
                                 }
 
-                            } while (option1 != 3);
+                            } while (option1 != 5);
                         } else if (sistema.getUsuarioLogado().getClass() == Comum.class) {
                             int option2 = 0;
 
                             do {
-                                System.out.println("Menu: \n"+ "1 - Cadastrar Avaliação\n2 - Listar Todos os Conteúdos\n3 - Listar Todas as Séries\n4 - Listar Todos os Filmes\n5 - Deslogar");
+                                System.out.println("Menu: \n"+ "1 - Cadastrar Avaliação\n2 - Remover Avaliação\n3 - Listar Todos os Conteúdos\n4 - Listar Todas as Séries\n5 - Listar Todos os Filmes\n6 - Buscar\n7 - Perfil\n8 - Deslogar");
                                 System.out.print("Opção: ");
                                 option2 = sc.nextInt();
                                 sc.nextLine();
@@ -220,7 +223,9 @@ public class Main {
                                         Integer nota = sc.nextInt();
                                         sc.nextLine();
 
-                                        if (sistema.adicionarAvaliacao(obra, comentario, nota)) {
+                                        Avaliacao avaliacao = new Avaliacao(sistema.getUsuarioLogado().getNome(), comentario, nota, sistema.getUsuarioLogado().getEmail());
+
+                                        if (sistema.adicionarAvaliacao(avaliacao, obra)) {
                                             System.out.println("Avaliação cadastrada com sucesso!");
                                         } else {
                                             System.out.println("Obra não encontrada!");
@@ -228,6 +233,19 @@ public class Main {
 
                                         break;
                                     case 2:
+                                        System.out.println("Removendo avaliação...");
+
+                                        System.out.print("Qual o filme que você deseja remover sua avaliação? ");
+                                        nome = sc.nextLine();
+
+                                        if (sistema.removerAvaliacao(nome)) {
+                                            System.out.println("Avaliação removida com sucesso!");
+                                        } else {
+                                            System.out.println("Avaliação não encontrada!");
+                                        }
+
+                                        break;
+                                    case 3:
                                         System.out.println("Listando todos os conteúdos...");
 
                                         if (sistema.listarTudo()) {
@@ -237,7 +255,7 @@ public class Main {
                                         }
 
                                         break;
-                                    case 3:
+                                    case 4:
                                         System.out.println("Listando todas as séries...");
 
                                         if (sistema.listarSeries()) {
@@ -247,7 +265,7 @@ public class Main {
                                         }
 
                                         break;
-                                    case 4:
+                                    case 5:
                                         System.out.println("Listando todos os filmes...");
 
                                         if (sistema.listarFilmes()) {
@@ -257,7 +275,30 @@ public class Main {
                                         }
 
                                         break;
-                                    case 5:
+                                    case 6:
+                                        System.out.println("Buscando...");
+
+                                        System.out.print("Título da obra que deseja localizar: ");
+                                        nome = sc.nextLine();
+
+                                        if (sistema.buscaObra(nome)) {
+                                            System.out.println("Obra encontrada!");
+                                        } else {
+                                            System.out.println("Obra não encontrada!");
+                                        }
+
+                                        break;
+                                    case 7:
+                                        System.out.println("Mostrando seu perfil...");
+
+                                        if (sistema.mostrarPerfil()) {
+                                            System.out.println("Perfil encontrado com sucesso!");
+                                        } else {
+                                            System.out.println("Perfil não encontrado!");
+                                        }
+
+                                        break;
+                                    case 8:
                                         System.out.println("Deslogando...");
                                         break;
                                     default:
@@ -265,7 +306,7 @@ public class Main {
                                         break;
                                 }
 
-                            } while (option2 != 5);
+                            } while (option2 != 8);
                         }
                     } else {
                         System.out.println("Email ou senha incorretos!");

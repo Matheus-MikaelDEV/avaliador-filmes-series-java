@@ -2,6 +2,8 @@ package Maneger;
 
 import Model.Conteudo.Avaliacao;
 import Model.Conteudo.Conteudo;
+import Model.Conteudo.Filme;
+import Model.Conteudo.Serie;
 import Model.Usuario.Usuario;
 
 import java.util.ArrayList;
@@ -76,14 +78,18 @@ public class Sistema {
     }
 
     //sistema que adiciona nota a alguma obra
-    public boolean adicionarAvaliacao(String obra, String comentario, Integer nota) {
+    public boolean adicionarAvaliacao(Avaliacao avaliacao, String obra) {
         if (conteudos.isEmpty()) {
             return false;
         } else {
             for (Conteudo conteudo : conteudos) {
-                if (conteudo.getTitulo().equals(obra)) {
-                    conteudo.adicionarAvaliacao(new Avaliacao(usuarioLogado.getNome(), comentario, nota));
-                    conteudo.getAvaliacoes().sort((a1, a2) -> a2.getNota().compareTo(a1.getNota()));
+                if (conteudo.getTitulo().equalsIgnoreCase(obra)) {
+                    for (Avaliacao avaliacao1 : conteudo.getAvaliacoes()) {
+                        if (avaliacao1.getEmail().equals(usuarioLogado.getEmail())) {
+                            return false;
+                        }
+                    }
+                    conteudo.adicionarAvaliacao(avaliacao);
                     return true;
                 }
             }
@@ -91,15 +97,49 @@ public class Sistema {
         }
     }
 
-    //Listar todos os conteudos
-    public boolean listarTudo() {
+    //sistema que remove avaliacao
+    public boolean removerAvaliacao(String obra) {
         if (conteudos.isEmpty()) {
             return false;
+        } else {
+            for (Conteudo conteudo : conteudos) {
+                if (conteudo.getTitulo().equalsIgnoreCase(obra)) {
+                    for (Avaliacao avaliacao : conteudo.getAvaliacoes()) {
+                        if (avaliacao.getEmail().equals(usuarioLogado.getEmail())) {
+                            conteudo.getAvaliacoes().removeIf(avaliacao1 -> avaliacao1.getEmail().equals(usuarioLogado.getEmail()));
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
-        for (Conteudo conteudo : conteudos) {
-            System.out.println(conteudo.getInfo());
+    }
+
+    //buscar obra pelo nome
+    public boolean buscaObra(String nome) {
+        if (conteudos.isEmpty()) {
+            return false;
+        } else {
+            for (Conteudo conteudo : conteudos) {
+                if (conteudo.getTitulo().toLowerCase().contains(nome.toLowerCase())) {
+                    System.out.println(conteudo.getInfo());
+                    return true;
+                }
+            }
         }
-        return true;
+        return false;
+    }
+
+        //Listar todos os conteudos
+    public boolean listarTudo() {
+            if (conteudos.isEmpty()) {
+                return false;
+            }
+            for (Conteudo conteudo : conteudos) {
+                System.out.println(conteudo.getInfo());
+            }
+            return true;
     }
 
     //Listar todas as séries
@@ -107,12 +147,16 @@ public class Sistema {
         if (conteudos.isEmpty()) {
             return false;
         }
+
+        boolean encontrou = false;
+
         for (Conteudo conteudo : conteudos) {
-            if (conteudo.getClass() == Serie.class) {
+            if (conteudo instanceof Serie) {
                 System.out.println(conteudo.getInfo());
+                encontrou = true;
             }
         }
-        return true;
+        return encontrou;
     }
 
     //Listar todos os filmes
@@ -120,12 +164,39 @@ public class Sistema {
         if (conteudos.isEmpty()) {
             return false;
         }
+
+        boolean encontrou = false;
+
         for (Conteudo conteudo : conteudos) {
-            if (conteudo.getClass() == Filme.class) {
+            if (conteudo instanceof Filme) {
                 System.out.println(conteudo.getInfo());
+                encontrou = true;
             }
         }
-        return true;
+        return encontrou;
+    }
+
+    //sistema que mostra o perfil e as avaliacoes
+    public boolean mostrarPerfil() {
+        if (usuarios.isEmpty()) {
+            return false;
+        }
+
+        for (Usuario usuario : usuarios) {
+            if (usuario.getEmail().equals(usuarioLogado.getEmail())) {
+                System.out.println(usuario.getInfo());
+                for (Conteudo conteudo : conteudos) {
+                    for (Avaliacao avaliacao : conteudo.getAvaliacoes()) {
+                        if (avaliacao.getEmail().equals(getUsuarioLogado().getEmail())) {
+                            System.out.println(avaliacao.getInfo());
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+
+        return false;
     }
 
     //puxa o usuario logado para validar o que ele pode fazer
